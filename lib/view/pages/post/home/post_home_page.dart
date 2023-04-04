@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http_riverpod_app/controller/post_controller.dart';
-import 'package:http_riverpod_app/dto/post_response_dto.dart';
-import 'package:http_riverpod_app/view/home/home_page_view_model.dart';
+import 'package:http_riverpod_app/model/post/post.dart';
+import 'package:http_riverpod_app/view/pages/post/home/post_home_page_view_model.dart';
 
-class HomePage extends ConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+class PostHomePage extends ConsumerWidget {
+  const PostHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    PostController pCon = ref.read(postController);
-    HomePageModel? hpm = ref.watch(homePageViewModel);
+    PostController postCon = ref.read(postController);
+    PostHomePageModel? postHomePageModel = ref.watch(postHomePageProvider);
 
     return Scaffold(
       body: Column(
         children: [
           Expanded(
-              child: hpm != null
-                  ? _buildListView(hpm.posts)
+              child: postHomePageModel != null
+                  ? _buildListView(postHomePageModel.posts)
                   : const CircularProgressIndicator()),
           ElevatedButton(
             onPressed: () {
-              pCon.findPosts();
+              postCon.findPosts();
             },
             child: Text("페이지로드"),
           )
@@ -30,7 +30,7 @@ class HomePage extends ConsumerWidget {
     );
   }
 
-  ListView _buildListView(List<PostDto> posts) {
+  ListView _buildListView(List<Post> posts) {
     return ListView.builder(
       itemCount: posts.length,
       itemBuilder: (context, index) {

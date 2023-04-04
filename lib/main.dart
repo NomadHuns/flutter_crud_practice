@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http_riverpod_app/view/home/home_page.dart';
+import 'package:http_riverpod_app/view/pages/post/home/post_home_page.dart';
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: PostHomePage(),
     );
   }
 }
