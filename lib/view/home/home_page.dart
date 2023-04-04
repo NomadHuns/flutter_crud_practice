@@ -12,7 +12,6 @@ class HomePage extends StatelessWidget {
           return ListTile(
             leading: Text("1"),
             title: Text("제목1"),
-            subtitle: Text("내용1"),
           );
         },
       ),
