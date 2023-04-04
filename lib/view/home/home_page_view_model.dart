@@ -10,6 +10,9 @@ final homePageViewModel = StateNotifierProvider<HomePageViewModel, HomePageModel
 class HomePageViewModel extends StateNotifier<HomePageModel?>{
   HomePageViewModel(super.state);
 
+  void init(List<PostDto> postDtoList) {
+    state = HomePageModel(posts: postDtoList);
+  }
 }
 
 // 창고 데이터

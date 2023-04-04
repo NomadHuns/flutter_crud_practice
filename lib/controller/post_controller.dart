@@ -14,7 +14,7 @@ class PostController {
   PostController(this.ref);
 
   Future<void> findPosts() async {
-    List<PostDto> homePagePostDtos = await PostRepository().findAll();
-    ref.read(homePageViewModel.notifier).state = HomePageModel(posts: homePagePostDtos);
+    List<PostDto> postDtoList = await PostRepository().findAll();
+    ref.read(homePageViewModel.notifier).init(postDtoList);
   }
 }
