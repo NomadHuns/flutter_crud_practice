@@ -11,7 +11,7 @@ class PostRepository {
 
   Future<List<Post>> findAll() {
     return Future.delayed(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
       () {
         return [
           Post(
@@ -31,7 +31,30 @@ class PostRepository {
     );
   }
 
-  Future<void>? save() {
-    return null;
+  Future<Post> save(String title) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () {
+        return Post(
+          id: 4,
+          title: "$title",
+        );
+      },
+    );
+  }
+
+  Future<void> deleteById(int id) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+    );
+  }
+
+  Future<Post> updateById(Post post) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+          () {
+        return post;
+      },
+    );
   }
 }
