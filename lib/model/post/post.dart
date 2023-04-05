@@ -26,7 +26,6 @@ class Post {
     id: json["id"],
     title: json["title"],
     body: json["body"],
-    user: User.fromJson(json["user"]),
   );
 
   Map<String, dynamic> toJson() => {

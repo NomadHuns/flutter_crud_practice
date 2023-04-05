@@ -1,6 +1,8 @@
 import 'package:http_riverpod_app/model/post/post.dart';
+import 'package:dio/dio.dart';
 
 class PostRepository {
+  final dio = Dio();
   static PostRepository _insteance = PostRepository._single();
 
   PostRepository._single();
@@ -9,26 +11,10 @@ class PostRepository {
     return _insteance;
   }
 
-  Future<List<Post>> findAll() {
-    return Future.delayed(
-      const Duration(seconds: 1),
-      () {
-        return [
-          Post(
-            id: 1,
-            title: "제목1",
-          ),
-          Post(
-            id: 2,
-            title: "제목2",
-          ),
-          Post(
-            id: 3,
-            title: "제목3",
-          ),
-        ];
-      },
-    );
+  Future<List<Post>> findAll() async {
+    Response response = await dio.get("https://jsonplaceholder.typicode.com/posts");
+    List<dynamic> mapList = response.data;
+    return mapList.map((e) => Post.fromJson(e)).toList();
   }
 
   Future<Post> save(String title) {
